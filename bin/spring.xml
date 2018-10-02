@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
- <bean id="triangle" class="org.kishor.javabrains.Triangle">
-  <!--  <property name="type" value="Equlateral"/>-->
-  <constructor-arg value="Equlateral"/>
-  <constructor-arg value="20"/>
- </bean>
+	<bean id="triangle" class="org.kishor.javabrains.Triangle">
+		<!-- <property name="type" value="Equlateral"/> -->
+		<constructor-arg value="Equlateral" />
+		<constructor-arg value="20" />
+	</bean>
+
+	<bean id="restaurant" class="org.kishor.javabrains.Restaurant" scope="prototype"> <!-- set scope to singleton and check --> 
+		<constructor-arg ref="teaBean" />
+		<property name="restaurantWaitersList">
+			<list>
+				<value>Mr. ABC</value>
+				<value>Mr. XYZ</value>
+				<value>Mr. PQR</value>
+			</list>
+		</property>
+		<!--<property name="hotDrink" ref="teaBean"/> -->
+		<!-- <constructor-arg ref="coffeeBean"/> -->
+	</bean>
+	<bean id="teaBean" class="org.kishor.javabrains.Tea"></bean>
+	<bean id="coffeeBean" class="org.kishor.javabrains.Coffee"></bean>
 </beans>
