@@ -11,6 +11,7 @@ public class Tester {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		Triangle triangle=(Triangle)context.getBean("triangle");
 		triangle.draw();
+		
 		Restaurant restaurant1 = (Restaurant)context.getBean("restaurant");
 		restaurant1.prepareHotDrink();
 		restaurant1.displayRestaurantWaitersList();
