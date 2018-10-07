@@ -2,6 +2,7 @@ package org.kishor.javabrains;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Tester {
@@ -11,7 +12,7 @@ public class Tester {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		Triangle triangle=(Triangle)context.getBean("triangle");
 		triangle.draw();
-		
+		((AbstractApplicationContext)context).registerShutdownHook(); // will close all the beans before closing context
 		Restaurant restaurant1 = (Restaurant)context.getBean("restaurant");
 		restaurant1.prepareHotDrink();
 		restaurant1.displayRestaurantWaitersList();
@@ -20,7 +21,7 @@ public class Tester {
 		
 		Restaurant restaurant2 = (Restaurant)context.getBean("restaurant");
 		restaurant2.greetCustomer();
-		((ConfigurableApplicationContext)context).close();   // close the application context
+		//((ConfigurableApplicationContext)context).close();   // close the application context
 	}
 
 }
