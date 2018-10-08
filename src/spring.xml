@@ -3,19 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-        <!--  default-init-method="init" default-destroy-method="destroy"-->
+	<!-- default-init-method="init" default-destroy-method="destroy" -->
 
 	<bean id="triangle" class="org.kishor.javabrains.Triangle">
 		<!-- <property name="type" value="Equlateral"/> -->
 		<constructor-arg value="Equlateral" />
 		<constructor-arg value="20" />
 	</bean>
-<!--  <bean id="restaurant" class="org.kishor.javabrains.Restaurant" scope="singleton"  lazy-init="true">
-to load the bean lazily and not at the application start up time.
-ApplicationContext interface pre-loads the singleton bean at the application start up time itself.
-If we use BeanFactory interface spring will always perform the lazy loading. and it is the main difference between
-ApplicationContext and BeanFactory interface.-->
-	<bean id="restaurant" class="org.kishor.javabrains.Restaurant" scope="prototype"> <!-- set scope to singleton and check --> 
+	<!-- <bean id="restaurant" class="org.kishor.javabrains.Restaurant" scope="singleton" 
+		lazy-init="true"> to load the bean lazily and not at the application start 
+		up time. ApplicationContext interface pre-loads the singleton bean at the 
+		application start up time itself. If we use BeanFactory interface spring 
+		will always perform the lazy loading. and it is the main difference between 
+		ApplicationContext and BeanFactory interface. -->
+	<bean id="restaurant" class="org.kishor.javabrains.Restaurant"
+		scope="prototype"> <!-- set scope to singleton and check -->
 		<constructor-arg ref="teaBean" />
 		<property name="restaurantWaitersList">
 			<list>
@@ -24,13 +26,23 @@ ApplicationContext and BeanFactory interface.-->
 				<value>Mr. PQR</value>
 			</list>
 		</property>
+		<property name="welcomeNote" value="${welcomeNote}"></property>
 		<!--<property name="hotDrink" ref="teaBean"/> -->
 		<!-- <constructor-arg ref="coffeeBean"/> -->
 	</bean>
-	<bean id="teaBean" class="org.kishor.javabrains.Tea" init-method="init" destroy-method="destroy"></bean>
+	<bean id="teaBean" class="org.kishor.javabrains.Tea" init-method="init"
+		destroy-method="destroy"></bean>
 	<bean id="coffeeBean" class="org.kishor.javabrains.Coffee"></bean>
 	<bean class="org.kishor.javabrains.DemoBeanPostProcessor1"></bean>
-	<bean class="org.kishor.javabrains.DemoBeanPostProcessor2"></bean>	
+	<bean class="org.kishor.javabrains.DemoBeanPostProcessor2"></bean>
 	<bean class="org.kishor.javabrains.DemoBeanFactoryPostProcessor"></bean>
-	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean> <!-- for postConstruct and preDestroy annotation to be called -->
+	<bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean> <!-- for postConstruct and preDestroy annotation to be called -->
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:spring.properties</value>
+		</property>
+	</bean>
 </beans>
