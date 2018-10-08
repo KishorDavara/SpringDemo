@@ -29,6 +29,8 @@ ApplicationContext and BeanFactory interface.-->
 	</bean>
 	<bean id="teaBean" class="org.kishor.javabrains.Tea" init-method="init" destroy-method="destroy"></bean>
 	<bean id="coffeeBean" class="org.kishor.javabrains.Coffee"></bean>
-		
+	<bean class="org.kishor.javabrains.DemoBeanPostProcessor1"></bean>
+	<bean class="org.kishor.javabrains.DemoBeanPostProcessor2"></bean>	
+	<bean class="org.kishor.javabrains.DemoBeanFactoryPostProcessor"></bean>
 	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean> <!-- for postConstruct and preDestroy annotation to be called -->
 </beans>
